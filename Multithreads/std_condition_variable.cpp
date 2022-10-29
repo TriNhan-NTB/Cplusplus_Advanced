@@ -4,6 +4,7 @@
  * @brief 
  * @version 0.1
  * @date 2022-10-29
+ * @ref: https://en.cppreference.com/w/cpp/thread/condition_variable
  * 
 */
 
@@ -13,7 +14,6 @@ The thread that intends to modify the shared variable must:
     Acquire a std::mutex (typically via std::lock_guard)
     Modify the shared variable while the lock is owned
     Call notify_one or notify_all on the std::condition_variable (can be done after releasing the lock)
-@ref: https://en.cppreference.com/w/cpp/thread/condition_variable
 */
 
 #include <mutex>
@@ -29,7 +29,7 @@ std::condition_variable check;
 
 void supportFunc1()
 {
-    cout << "supportFuct1 start sleeep" << endl;
+    cout << "supportFuct1 start sleep" << endl;
     sleep(5);
     check.notify_one();
 }
@@ -62,7 +62,7 @@ int main()
 
 /*
 Wait notify
-supportFuct1 start sleeep
+supportFuct1 start sleep
 Finish wait
 Do something here
 */
